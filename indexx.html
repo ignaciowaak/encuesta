@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jersey+10&family=Loved+by+the+King&display=swap" rel="stylesheet">
+<title>Dul princesita encuesta</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: black;
+  }
+  .container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 50px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  h1 {
+    font-family: "Loved by the King", sans-serif;
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+  }
+  .question {
+    margin-bottom: 40px;
+    transition: transform 0.5s ease;
+  }
+  img {
+    display: block;
+    margin: 0 auto 10px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 1s ease;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ff;
+  }
+  .options {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  button {
+    padding: 15px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #fff;
+    color: black;
+    border: solid 1px black;
+    transition: background-color 0.3s, transform 0.3s ease;
+  }
+  button:hover {
+    background-color: #eaffff;
+    transform: translateY(-7px);
+  }
+  .message {
+    text-align: center;
+    margin-bottom: 20px;
+    font-style: italic;
+    color: black;
+  }
+  .results {
+    text-align: center;
+    margin-top: 40px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Hola chiquita es una encuesta ❤ espero que la disfrutes dul</h1>
+  <div class="question">
+    <img src="imagen1.jpg" alt="Pregunta 1">
+    <h2>¿Qué opinas sobre esto?</h2>
+    <div class="options">
+      <button onclick="siguientePregunta('Sí')">Sí</button>
+      <button onclick="siguientePregunta('No')">No</button>
+    </div>
+  </div>
+  <p class="message" id="saludo"></p>
+  <div class="results" id="resultados" style="display: none;">
+    <h2>Tu resultado fue:</h2>
+    <p id="resultadoTexto"></p>
+  </div>
+</div>
+
+<!-- Elemento de audio para reproducir la canción -->
+<audio id="cancion" src="audioooo.mp3" autoplay loop style="display: none;"></audio>
+
+<script>
+  const preguntas = [
+    { imagen: '1.jpg', pregunta: '¿Dul está vos vos No?' },
+    { imagen: '2.jpg', pregunta: '¡Ya lo sabia que la de la foto eras vos pero me encanta esa foto esta Toda una Diosa¡*Te regalo una flor*' },
+    { imagen: '3.jpg', pregunta: '¿Te gustan los los gatitos?' },
+    { imagen: '4.jpg', pregunta: '¿Te gustan los perritos?' },
+    { imagen: '5.jpg', pregunta: '¿Te gustan los animales de granga?' },
+    { imagen: '6.jpg', pregunta: 'Dul yo me hago pelis en mi cabesa y es esto ¿seríamos estos?' },
+    { imagen: '7.jpg', pregunta: '¿Dul me gustaría viajar juntos?' },
+    { imagen: '8.jpg', pregunta: 'Dul Me gusta estar callados y sólo estar ¿qué pensas?' },
+    { imagen: '9.jpg', pregunta: 'y llegar a cumplir metas y sueños y ser exitosos ¿❤?' },
+    { imagen: '10.jpg', pregunta: 'Compartir momentos juntos¿Momentos para recordar?' },
+    { imagen: '11.jpg', pregunta: 'Poder cuidarte y estas en tus peores momentos estar hay ¿Me dejas?' },
+    { imagen: '12.jpg', pregunta: 'Darte muchos Besitos ¿Besito de pescadito?' },
+    { imagen: '13.jpg', pregunta: 'cosinar juntos y hacerte una comida super rica ¿y disfrutar de eso?' }
+    , { imagen: '14.jpg', pregunta: 'Llegaste al final de la encuensta Princesita Podes completar el corazón? con tus deditos?¡' }
+  ];
+  let index = 0;
+
+  function siguientePregunta(respuesta) {
+    // Aquí podrías agregar lógica para guardar la respuesta
+    if (index < preguntas.length - 1) {
+      index++;
+      mostrarPregunta();
+    } else {
+      mostrarResultados();
+    }
+  }
+
+  function mostrarPregunta() {
+    const preguntaActual = preguntas[index];
+    const img = document.querySelector('img');
+    const h2 = document.querySelector('h2');
+
+    img.src = preguntaActual.imagen;
+    img.alt = preguntaActual.pregunta;
+    h2.textContent = preguntaActual.pregunta;
+    mostrarSaludo();
+  }
+  
+  function mostrarSaludo() {
+    const saludo = document.getElementById('saludo');
+    saludo.textContent = '¡Hola! ¿Vas bien con las preguntas?';
+    setTimeout(() => {
+      saludo.textContent = 'Solo responde dul y no olvides de Tomar awita';
+    }, 2000); // Cambia el mensaje cada 3 segundos
+  }
+
+  function mostrarResultados() {
+    const resultados = document.getElementById
+    ('resultados');
+    const resultadoTexto = document.getElementById('resultadoTexto');
+    resultados.style.display = 'block';
+    const ultimaRespuesta = 'Sí'; // Aquí deberías calcular el resultado real basado en las respuestas
+    resultadoTexto.textContent = `De acuerdo a tus respuestas, ¡tu resultado fue que debemos estar juntos para toda la vida!
+    La encuesta no se basaba en que respondías por que aunque no pusieras no a todo quiero todo con vos 
+    Te decido está camisón te dejo la letra gracias por tomar el tiempo de hacer la encuesta espero que estés bien y te sientas mejor /////////////LETRA-->
+    
+    
+
+
+
+Sentimientos
+Feelings¿ Es demasiado mi amor ?
+
+
+  Porque se está haciendo tarde, ¿te gustaría quedarte, eh ?
+
+Pero yo, quiero hacer lo que quieras hacer
+
+
+    Si quisieras, niña, podríamos cruzar esa línea
+Sé que hemos sido amigos
+
+
+Y el amor solo conoce los extremos rotos, sí
+
+
+Eso es lo que dijiste, pero, chica, déjame hacerte cambiar de opinión
+
+
+Mmm, mmm, mmm
+Mmm, mmm, mmm
+Porque los sentimientos son difíciles de encontrar
+  
+Mmm, mmm, mmm
+Mmm, mmm, mmm
+los sentimientos son duros
+
+
+Pero los siento en mi pecho, la pequeña guerra dentro
+
+Pero cuando te acerco
+
+
+Chica, no puedo explicar
+
+
+Pero yo, quiero hacer lo que quieras hacer
+
+
+    Si quisieras, niña, podríamos cruzar esa línea
+  
+  
+Sé que hemos sido amigos
+
+
+Y el amor solo conoce los extremos rotos, sí
+
+
+Eso es lo que dijiste, pero, chica, déjame hacerte cambiar de opinión
+
+
+Mmm, mmm, mmm
+Mmm, mmm, mmm
+Porque los sentimientos son difíciles de encontrar
+  
+Mmm, mmm, mmm
+Mmm, mmm, mmm
+Los sentimientos son duros, sí
+
+
+Y lo sé, y sé que a veces duele
+
+
+Que a veces me duele cuando estoy contigo
+Y lo sé, y sé que a veces duele
+
+Que a veces me duele cuando te extraño
+
+
+Y lo sé, y sé que está en tu mente
+
+
+Que está en tu mente cuando te beso
+
+
+Pero quiero hacer lo que quieras hacer
+
+
+    Quiero hacer lo que quieras hacer
+  
+  
+      Si quisieras, niña, podríamos cruzar esa línea
+    
+  Sé que hemos sido amigos
+
+Y el amor solo conoce los extremos rotos, sí
+
+
+Eso es lo que dijiste, pero, chica, déjame hacerte cambiar de opinión
+
+Mmm, mmm, mmm
+Mmm, mmm, mmm
+Porque los sentimientos son difíciles de encontrar
+  'Cau
+Mmm, mmm, mmm
+Mmm, mmm, mmm
+Los sentimientos son difíciles de encontrar, sí
+`;
+    
+    // Reproducir la canción al llegar al final de la encuesta
+    const cancion = document.getElementById('cancion');
+    cancion.play();
+  }
+
+  // Mostrar la primera pregunta al cargar la página
+  mostrarPregunta();
+</script>
+
+</body>
+</html>
